@@ -12,11 +12,11 @@ export const StoryblokRender: FC<StoryblokRenderProps> = async ({
   renderAction,
   ...context
 }) => {
-  const { isEnabled } = await draftMode();
+  const draft = await draftMode();
 
   const render = renderAction(context);
 
-  if (context.version === "draft" && isEnabled) {
+  if (context.version === "draft" && draft.isEnabled) {
     return (
       <StoryblokPreview
         renderAction={renderAction}
@@ -28,7 +28,7 @@ export const StoryblokRender: FC<StoryblokRenderProps> = async ({
 
   return (
     <>
-      {context.version === "draft" && !isEnabled && (
+      {context.version === "draft" && !draft.isEnabled && (
         <StoryblokDraftMode searchParams={context.searchParams} />
       )}
       {render}

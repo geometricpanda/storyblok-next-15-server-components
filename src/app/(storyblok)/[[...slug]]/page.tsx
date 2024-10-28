@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { notFound } from "next/navigation";
-import { ENV } from "@/lib/env";
 
 import {
-  coerceContentVersion,
-  coerceQueryParam,
+  coerceQueryNumber,
+  coerceQueryString,
   StoryblokRender,
+  validateStoryblokSession,
 } from "@/lib/storyblok";
 
 import { renderAction } from "./render.action";
@@ -22,9 +22,11 @@ const Page: FC<PageProps> = async (req) => {
 
   const slug = params.slug ? params.slug.join("/") : "home";
 
-  const cv = coerceContentVersion(searchParams._storyblok_rl);
-  const from_release = coerceQueryParam(searchParams._storyblok_release);
-  const version = ENV.STORYBLOK_BRIDGE ? "draft" : "published";
+  const cv = coerceQueryNumber(searchParams._storyblok_rl);
+  const from_release = coerceQueryString(searchParams._storyblok_release);
+  const version = validateStoryblokSession(searchParams)
+    ? "draft"
+    : "published";
 
   const page = await Storyblok.getStory(
     slug,
