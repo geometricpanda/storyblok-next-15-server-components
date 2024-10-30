@@ -28,16 +28,21 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@storyblok/js": "^3.1.6",
     "clsx": "^2.1.1",
+    "debug": "^4.3.7",
     "next": "15.0.1",
     "npm": "^10.9.0",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
-    "storyblok-js-client": "^6.10.1"
+    "sha1": "^1.1.1",
+    "storyblok-js-client": "^6.10.1",
+    "supports-color": "^9.4.0"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/sha1": "^1.1.5",
     "babel-plugin-react-compiler": "^19.0.0-beta-6fc168f-20241025",
     "eslint": "^8",
     "eslint-config-next": "15.0.1",

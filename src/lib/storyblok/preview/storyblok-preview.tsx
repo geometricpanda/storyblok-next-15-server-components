@@ -8,7 +8,7 @@ import {
   storyblokInit,
 } from "@storyblok/js";
 
-import { BlokContext, RenderAction } from "./interface";
+import { BlokContext, RenderAction } from "../interface";
 
 storyblokInit({ accessToken: "secret" });
 

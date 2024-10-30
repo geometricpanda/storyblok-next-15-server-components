@@ -3,7 +3,7 @@ import {
   BlokComponents,
   BlokContext,
   StoryblokComponentProps,
-} from "./interface";
+} from "../interface";
 
 export interface StoryblokRootProps extends BlokContext {
   components: BlokComponents;

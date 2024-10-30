@@ -1,5 +1,5 @@
 export const coerceQueryString = (
-  param?: string | Array<string>,
+  param?: null | string | Array<string>,
 ): string | undefined => {
   if (!param) {
     return undefined;

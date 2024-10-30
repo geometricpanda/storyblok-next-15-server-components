@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { notFound } from "next/navigation";
+import { draftMode } from "next/headers";
 
 import {
   coerceQueryNumber,
   coerceQueryString,
   StoryblokRender,
-  validateStoryblokSession,
 } from "@/lib/storyblok";
 
 import { renderAction } from "./render.action";
@@ -19,14 +19,13 @@ interface PageProps {
 const Page: FC<PageProps> = async (req) => {
   const params = await req.params;
   const searchParams = await req.searchParams;
+  const draft = await draftMode();
 
   const slug = params.slug ? params.slug.join("/") : "home";
 
   const cv = coerceQueryNumber(searchParams._storyblok_rl);
   const from_release = coerceQueryString(searchParams._storyblok_release);
-  const version = validateStoryblokSession(searchParams)
-    ? "draft"
-    : "published";
+  const version = draft.isEnabled ? "draft" : "published";
 
   const page = await Storyblok.getStory(
     slug,

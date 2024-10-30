@@ -1,4 +1,3 @@
-"use server";
 import { cookies, draftMode } from "next/headers";
 
 export const enableDraftMode = async () => {
@@ -14,4 +13,11 @@ export const enableDraftMode = async () => {
     secure: true,
     sameSite: "none",
   });
+};
+
+export const disableDraftMode = async () => {
+  const draft = await draftMode();
+  draft.disable();
+  const cookieStore = await cookies();
+  cookieStore.delete("__prerender_bypass");
 };
