@@ -1,0 +1,46 @@
+.container {
+    --_columns: span 12;
+    --_background-color: var(--plane-background);
+    padding: var(--padding-lg)
+}
+
+.container--alt {
+    --_background-color: var(--plane-alt-background);
+}
+
+@media (width >= 48em) {
+
+    .container--narrow {
+        --_columns: 2 / span 10;
+    }
+
+    .container--standard {
+        --_columns: 1 / span 12;
+    }
+}
+
+@media (width >= 64em) {
+
+    .container--narrow {
+        --_columns: 3 / span 8;
+    }
+
+    .container--standard {
+        --_columns: 2 / span 10;
+    }
+}
+
+.container__grid {
+    background-color: var(--_background-color);
+    max-width: var(--max-width);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    padding: var(--padding-lg);
+    border-radius: var(--border-radius-xs);
+}
+
+.container__columns {
+    grid-column: var(--_columns);
+}

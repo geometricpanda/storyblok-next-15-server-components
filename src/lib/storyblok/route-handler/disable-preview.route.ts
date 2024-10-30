@@ -5,14 +5,7 @@ import { disableDraftMode } from "../utils";
 export const disablePreviewRoute: StoryblokRouteHandler =
   () =>
   async ({ nextUrl }) => {
-    const redirectToParam = nextUrl.searchParams.get("redirectTo");
-
-    if (!redirectToParam) {
-      return NextResponse.json(
-        { error: "Missing redirectTo query parameter" },
-        { status: 400 },
-      );
-    }
+    const redirectToParam = nextUrl.searchParams.get("redirectTo") || "/";
 
     const redirectTo = new URL(redirectToParam);
 

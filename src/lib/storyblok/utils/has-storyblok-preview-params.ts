@@ -1,4 +1,4 @@
-import { debug } from "../debug";
+import { debug } from "./debug";
 import { STORYBLOK_PARAM } from "../route-handler";
 
 export const hasStoryblokPreviewParams = (

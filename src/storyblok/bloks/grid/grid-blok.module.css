@@ -1,0 +1,17 @@
+.grid {
+    display: grid;
+    gap: var(--padding-lg);
+}
+
+
+@media (width >= 48em) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (width >= 64em) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

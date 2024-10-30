@@ -1,8 +1,9 @@
 import { FC } from "react";
-import { BlokContext, RenderAction } from "../interface";
-import { StoryblokPreview } from "../preview";
 import { draftMode } from "next/headers";
 import { StoryblokBridgeConfigV2 } from "@storyblok/js";
+
+import { BlokContext, RenderAction } from "../interface";
+import { StoryblokPreview } from "../preview";
 
 export interface StoryblokRenderProps extends BlokContext {
   renderAction: RenderAction;

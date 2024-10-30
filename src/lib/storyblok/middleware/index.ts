@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { draftMode } from "next/headers";
-import { debug } from "../debug";
+import { debug } from "../utils/debug";
 
 import {
   validateStoryblokPreviewParams,

@@ -1,11 +1,15 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { StoryblokConfig } from "../init-storyblok";
+import type { StoryblokConfig } from "../interface";
 
 export interface RouteHandlerParams {
   params: Promise<{
     storyblok: Array<string>;
   }>;
 }
+
+export type StoryblokRouteHandler = (
+  config: StoryblokConfig,
+) => (req: NextRequest, params: RouteHandlerParams) => Promise<NextResponse>;
 
 export enum STORYBLOK_PARAM {
   STORYBLOK = "_storyblok",
@@ -23,7 +27,3 @@ export enum ROUTES {
   DRAFT_MODE_ENABLE = "draft-mode/enable",
   DRAFT_MODE_DISABLE = "draft-mode/disable",
 }
-
-export type StoryblokRouteHandler = (
-  config: StoryblokConfig,
-) => (req: NextRequest, params: RouteHandlerParams) => Promise<NextResponse>;

@@ -1,19 +1,20 @@
 import { ISbComponentType } from "storyblok-js-client";
 import { BLOK } from "@/storyblok/bloks";
-import { BlokProps, StoryblokEditable } from "@/lib/storyblok";
-import { FC } from "react";
+import { BC, StoryblokEditable } from "@/lib/storyblok";
 
-export interface GridBlokProps extends ISbComponentType<BLOK.GRID> {
+import styles from "./grid-blok.module.css";
+
+export type GridBlokProps = ISbComponentType<BLOK.GRID> & {
   columns: Array<ISbComponentType<BLOK>>;
-}
+};
 
-export const GridBlok: FC<BlokProps<GridBlokProps>> = ({
+export const GridBlok: BC<GridBlokProps> = ({
   blok: { columns, ...blok },
   StoryblokComponent,
 }) => {
   return (
     <StoryblokEditable blok={blok}>
-      <div>
+      <div className={styles["grid"]}>
         {columns.map((blok) => (
           <StoryblokComponent blok={blok} key={blok._uid} />
         ))}

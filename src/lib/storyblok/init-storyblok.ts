@@ -1,11 +1,7 @@
 import { routeHandler } from "./route-handler";
 import { middleware } from "./middleware";
 import StoryblokClient from "storyblok-js-client";
-
-export interface StoryblokConfig {
-  accessToken: string;
-  basePath: string;
-}
+import { StoryblokConfig } from "./interface";
 
 export interface StoryblokOptions {
   basePath?: string;

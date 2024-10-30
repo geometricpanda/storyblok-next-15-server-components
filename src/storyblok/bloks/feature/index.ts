@@ -1,3 +1,3 @@
-import { FeatureBlok } from "./feature.blok";
+import { FeatureBlok } from "./feature-blok";
 
 export default FeatureBlok;

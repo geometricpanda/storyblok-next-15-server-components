@@ -1,6 +1,6 @@
 import sha1 from "sha1";
 import { coerceQueryString } from "./coerce-query-string";
-import { debug } from "../debug";
+import { debug } from "./debug";
 import { STORYBLOK_PARAM } from "../route-handler";
 
 export const validateStoryblokPreviewParams = (

@@ -4,20 +4,13 @@ import {
   hasStoryblokPreviewParams,
   validateStoryblokPreviewParams,
   enableDraftMode,
+  disableDraftMode,
 } from "../utils";
 
 export const enablePreviewRoute: StoryblokRouteHandler =
   ({ accessToken }) =>
   async ({ nextUrl }) => {
-    const redirectToParam = nextUrl.searchParams.get("redirectTo");
-
-    if (!redirectToParam) {
-      return NextResponse.json(
-        { error: "Missing redirectTo query parameter" },
-        { status: 400 },
-      );
-    }
-
+    const redirectToParam = nextUrl.searchParams.get("redirectTo") || "/";
     const redirectTo = new URL(redirectToParam);
 
     const hasPreviewParams = hasStoryblokPreviewParams(redirectTo.searchParams);
@@ -27,10 +20,13 @@ export const enablePreviewRoute: StoryblokRouteHandler =
     );
 
     if (!hasPreviewParams || !hasValidPreviewParams) {
-      return NextResponse.json(
-        { error: "Invalid preview query parameters" },
-        { status: 401 },
+      await disableDraftMode();
+      const strippedRedirectTo = new URL(
+        redirectTo.pathname,
+        redirectTo.origin,
       );
+
+      return NextResponse.redirect(strippedRedirectTo);
     }
 
     await enableDraftMode();

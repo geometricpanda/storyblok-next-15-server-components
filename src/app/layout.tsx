@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { FC, ReactNode } from "react";
+import { DM_Sans } from "next/font/google";
+
+const dm_sans = DM_Sans();
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +18,7 @@ interface RootLayoutProps {
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={dm_sans.className}>{children}</body>
     </html>
   );
 };
