@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { BlokProps, StoryblokEditable } from "@/lib/storyblok";
 import { ISbComponentType } from "storyblok-js-client";
-import { BLOK } from "@/lib/bloks/components";
+import { BLOK } from "@/storyblok/bloks";
 
 export interface PageBlokProps extends ISbComponentType<BLOK.PAGE> {
   body: Array<ISbComponentType<BLOK>>;

@@ -19,9 +19,9 @@ export interface StoryblokPreviewProps extends BlokContext {
 }
 
 export const StoryblokPreview: FC<StoryblokPreviewProps> = ({
-  renderAction,
   defaultRender,
   bridgeConfig,
+  renderAction,
   ...context
 }) => {
   const [render, setRender] = useState<ReactNode>(defaultRender);

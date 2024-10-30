@@ -7,37 +7,32 @@ import {
 } from "../utils";
 
 export const enablePreviewRoute: StoryblokRouteHandler =
-  (config) =>
-  async ({ nextUrl: { origin, searchParams } }) => {
-    const hasValidParams = hasStoryblokPreviewParams(searchParams);
-    if (!hasValidParams) {
+  ({ accessToken }) =>
+  async ({ nextUrl }) => {
+    const redirectToParam = nextUrl.searchParams.get("redirectTo");
+
+    if (!redirectToParam) {
       return NextResponse.json(
-        { error: "Missing preview query parameters" },
+        { error: "Missing redirectTo query parameter" },
+        { status: 400 },
+      );
+    }
+
+    const redirectTo = new URL(redirectToParam);
+
+    const hasPreviewParams = hasStoryblokPreviewParams(redirectTo.searchParams);
+    const hasValidPreviewParams = validateStoryblokPreviewParams(
+      accessToken,
+      redirectTo.searchParams,
+    );
+
+    if (!hasPreviewParams || !hasValidPreviewParams) {
+      return NextResponse.json(
+        { error: "Invalid preview query parameters" },
         { status: 401 },
       );
     }
 
-    const validateParams = validateStoryblokPreviewParams(
-      config.accessToken,
-      searchParams,
-    );
-
-    if (!validateParams) {
-      return NextResponse.json(
-        { error: "Invalid preview query parameters" },
-        { status: 403 },
-      );
-    }
-
-    const redirectToParam = searchParams.get("redirectTo") || "/";
-
     await enableDraftMode();
-
-    const redirectTo = new URL(redirectToParam, origin);
-    for (const [key, value] of searchParams.entries()) {
-      redirectTo.searchParams.set(key, value);
-    }
-
-    redirectTo.searchParams.delete("redirectTo");
     return NextResponse.redirect(redirectTo);
   };

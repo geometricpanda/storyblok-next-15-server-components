@@ -1,9 +1,4 @@
-import { storyblokMiddleware } from "@/lib/storyblok/middleware";
-import { ENV } from "@/lib/env";
-
-export const middleware = storyblokMiddleware({
-  accessToken: ENV.STORYBLOK_ACCESS_TOKEN,
-});
+export { middleware } from "@/storyblok";
 
 export const config = {
   matcher: [

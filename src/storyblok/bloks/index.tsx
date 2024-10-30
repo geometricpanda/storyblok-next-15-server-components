@@ -11,7 +11,7 @@ export enum BLOK {
   FEATURE = "feature",
 }
 
-export const Components: BlokComponents = {
+export const components: BlokComponents = {
   [BLOK.PAGE]: PageBlok,
   [BLOK.TEASER]: TeaserBlok,
   [BLOK.GRID]: GridBlok,

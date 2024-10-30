@@ -1,5 +1,5 @@
 import { ISbComponentType } from "storyblok-js-client";
-import { BLOK } from "@/lib/bloks/components";
+import { BLOK } from "@/storyblok/bloks";
 import { BlokProps, StoryblokEditable } from "@/lib/storyblok";
 import { FC } from "react";
 

@@ -1,6 +1,6 @@
 import { ISbComponentType } from "storyblok-js-client";
 import { BlokProps, StoryblokEditable } from "@/lib/storyblok";
-import { BLOK } from "@/lib/bloks/components";
+import { BLOK } from "@/storyblok/bloks";
 import { FC } from "react";
 
 export interface TeaserBlokProps extends ISbComponentType<BLOK.TEASER> {

@@ -1,6 +1,8 @@
 import { routerGet } from "./router";
-import { RouteHandlerConfig } from "./interface";
+import { StoryblokConfig } from "../init-storyblok";
 
-export const routeHandler = (context: RouteHandlerConfig) => ({
+export const routeHandler = (context: StoryblokConfig) => ({
   GET: routerGet(context),
 });
+
+export * from "./interface";

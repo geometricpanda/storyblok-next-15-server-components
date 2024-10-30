@@ -1,22 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { draftMode } from "next/headers";
+import { debug } from "../debug";
+
 import {
   validateStoryblokPreviewParams,
   hasStoryblokPreviewParams,
 } from "../utils";
-import { MiddlewareConfig } from "./interface";
-import { debug } from "../debug";
-import { ROUTES } from "@/lib/storyblok/route-handler/interface";
 
-export const storyblokMiddleware =
-  ({ accessToken, ..._config }: MiddlewareConfig) =>
-  async (req: NextRequest) => {
+import { ROUTES } from "../route-handler";
+import { StoryblokConfig } from "../init-storyblok";
+
+export const middleware =
+  (config: StoryblokConfig) => async (req: NextRequest) => {
     const log = debug.extend("middleware");
-
-    const config = {
-      basePath: "/storyblok",
-      ..._config,
-    };
 
     log("initialised with config", config);
 
@@ -39,7 +35,10 @@ export const storyblokMiddleware =
       return NextResponse.next();
     }
 
-    const isValid = validateStoryblokPreviewParams(accessToken, searchParams);
+    const isValid = validateStoryblokPreviewParams(
+      config.accessToken,
+      searchParams,
+    );
 
     if (!isValid) {
       log("storyblok session is invalid");
@@ -65,16 +64,12 @@ export const storyblokMiddleware =
       origin,
     );
 
-    redirectTo.searchParams.set("redirectTo", pathname);
-
-    for (const [key, value] of searchParams.entries()) {
-      redirectTo.searchParams.set(key, value);
-    }
+    redirectTo.searchParams.set("redirectTo", req.url);
 
     log("redirecting to storyblok route handler", {
       origin: redirectTo.origin,
       pathname: redirectTo.pathname,
-      searchParams: Object.fromEntries(redirectTo.searchParams.entries()),
+      redirectTo: req.url,
     });
 
     return NextResponse.redirect(redirectTo);

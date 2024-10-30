@@ -1,6 +1,3 @@
-import { routeHandler } from "@/lib/storyblok";
-import { ENV } from "@/lib/env";
+import { routeHandler } from "@/storyblok";
 
-export const { GET } = routeHandler({
-  accessToken: ENV.STORYBLOK_ACCESS_TOKEN,
-});
+export const { GET } = routeHandler;

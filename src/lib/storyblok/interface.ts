@@ -14,6 +14,7 @@ export interface BlokContext {
   cv?: number;
   from_release?: string;
   version: "draft" | "published";
+  [key: string]: unknown;
 }
 
 export type BlokProps<T extends ISbComponentType<string>> = {

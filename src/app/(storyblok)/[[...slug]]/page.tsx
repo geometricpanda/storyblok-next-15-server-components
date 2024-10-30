@@ -8,8 +8,10 @@ import {
   StoryblokRender,
 } from "@/lib/storyblok";
 
+import { Storyblok } from "@/storyblok";
 import { renderAction } from "./render.action";
-import { Storyblok } from "./storyblok";
+
+export const revalidate = 0;
 
 interface PageProps {
   params: Promise<{ slug: Array<string> }>;
@@ -26,23 +28,22 @@ const Page: FC<PageProps> = async (req) => {
   const cv = coerceQueryNumber(searchParams._storyblok_rl);
   const from_release = coerceQueryString(searchParams._storyblok_release);
   const version = draft.isEnabled ? "draft" : "published";
+  const revalidate = draft.isEnabled ? 0 : 60;
 
   const page = await Storyblok.getStory(
     slug,
     { cv, from_release, version },
-    { next: { revalidate: 60 } },
+    { next: { revalidate } },
   ).catch(() => null);
 
   if (!page) {
     return notFound();
   }
 
-  const story = page.data.story;
-
   return (
     <StoryblokRender
       renderAction={renderAction}
-      story={story}
+      story={page.data.story}
       params={params}
       searchParams={searchParams}
       cv={cv}

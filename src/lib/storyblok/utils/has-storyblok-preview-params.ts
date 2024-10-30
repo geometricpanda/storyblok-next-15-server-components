@@ -1,13 +1,14 @@
-import { debug } from "@/lib/storyblok/debug";
+import { debug } from "../debug";
+import { STORYBLOK_PARAM } from "../route-handler";
 
 export const hasStoryblokPreviewParams = (
   searchParams: URLSearchParams,
 ): boolean => {
   const log = debug.extend("has-preview-params");
 
-  const _spaceId = searchParams.get("_storyblok_tk[space_id]");
-  const _timestamp = searchParams.get("_storyblok_tk[timestamp]");
-  const _token = searchParams.get("_storyblok_tk[token]");
+  const _spaceId = searchParams.get(STORYBLOK_PARAM.STORYBLOK_SPACE_ID);
+  const _timestamp = searchParams.get(STORYBLOK_PARAM.STORYBLOK_TIMESTAMP);
+  const _token = searchParams.get(STORYBLOK_PARAM.STORYBLOK_TOKEN);
 
   const hasParams = Boolean(_spaceId && _timestamp && _token);
   log("minimum parameters: %s", hasParams ? "present" : "missing");
