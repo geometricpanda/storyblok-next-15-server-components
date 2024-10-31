@@ -8,7 +8,7 @@ import {
 } from "../utils";
 
 import { ROUTES } from "../route-handler";
-import { StoryblokConfig } from "../init-storyblok";
+import { StoryblokConfig } from "../interface";
 
 export const middleware =
   (config: StoryblokConfig) => async (req: NextRequest) => {
