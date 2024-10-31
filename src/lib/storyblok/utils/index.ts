@@ -3,3 +3,4 @@ export * from "./has-storyblok-preview-params";
 export * from "./coerce-query-number";
 export * from "./coerce-query-string";
 export * from "./storyblok-draft-mode";
+export * from "./coerce-image";

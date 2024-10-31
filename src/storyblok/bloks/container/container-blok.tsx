@@ -7,31 +7,34 @@ import clsx from "clsx";
 
 export type ContainerBlokProps = ISbComponentType<BLOK.CONTAINER> & {
   body: Array<ISbComponentType<string>>;
-  layout: "standard" | "narrow";
-  alt: boolean;
+  layout: "standard" | "narrow" | "wide";
 };
 
 export const ContainerBlok: BC<ContainerBlokProps> = ({
-  blok: { body, layout, alt, ...blok },
+  blok: { body, layout, ...blok },
   StoryblokComponent,
 }) => {
   return (
-    <StoryblokEditable blok={blok}>
-      <div
-        className={clsx({
+    <div
+      className={clsx(
+        {
           [styles["container"]]: true,
           [styles["container--narrow"]]: layout === "narrow",
-          [styles["container--alt"]]: alt,
-        })}
-      >
-        <div className={styles["container__grid"]}>
+          [styles["container--standard"]]: layout === "standard",
+          [styles["container--wide"]]: layout === "wide",
+        },
+        "lg:px-4",
+      )}
+    >
+      <div className={styles["container__grid"]}>
+        <StoryblokEditable blok={blok}>
           <div className={styles["container__columns"]}>
             {body.map((blok) => (
               <StoryblokComponent blok={blok} key={blok._uid} />
             ))}
           </div>
-        </div>
+        </StoryblokEditable>
       </div>
-    </StoryblokEditable>
+    </div>
   );
 };

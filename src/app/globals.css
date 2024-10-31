@@ -1,39 +1,10 @@
 @import "modern-css-reset";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-
-    --gray-200: #E2E8F0;
-    --gray-300: #CBD5E1;
-    --gray-500: #64748B;
-    --gray-600: #475569;
-    --gray-800: #1E293B;
-    --gray-900: #0F172A;
-
-    --max-width: 1400px;
-
-    --padding-xxs: 4px;
-    --padding-xs: 8px;
-    --padding-sm: 12px;
-    --padding-md: 16px;
-    --padding-lg: 24px;
-    --padding-xl: 32px;
-
-    --border-radius-xs: 4px;
-    --border-radius-sm: 6px;
-    --border-radius-md: 9px;
-
-    --border-width: 1px;
-
-    --plane-background: var(--gray-300);
-    --plane-alt-background: var(--gray-800);
-
-    --surface-alt-outline: var(--gray-800);
-    --surface-alt-bg: var(--gray-900);
-    --surface-alt-fg: #FFFFFF;
-
-    --surface-outline: var(--gray-200);
-    --surface-bg: #FFFFFF;
-    --surface-fg: #00003F;
-
+    --max-width: 1440px;
+    --gutters: 24px;
 }
+
